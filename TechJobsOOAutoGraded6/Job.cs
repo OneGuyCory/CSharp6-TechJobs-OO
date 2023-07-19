@@ -3,7 +3,7 @@ namespace TechJobsOOAutoGraded6
 {
 	public class Job
 	{
-        /*
+        
 
             public int Id { get; }
             private static int nextId = 1;
@@ -15,13 +15,59 @@ namespace TechJobsOOAutoGraded6
 
             // TODO: Task 3: Add the two necessary constructors.
 
-            // TODO: Task 3: Generate Equals() and GetHashCode() methods.  
+            public Job()
+            {
+                Id = nextId;
+                nextId++;
+            }
 
-            // TODO: Task 5: Generate custom ToString() method.
-                //Until you create this method, you will not be able to print a job to the console.
+            public Job(string name, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
+            {
+                Name = name;
+                EmployerName = employerName;
+                EmployerLocation = employerLocation;
+                JobType = jobType;
+                JobCoreCompetency = jobCoreCompetency;
+            }
 
 
-        */
+        // TODO: Task 3: Generate Equals() and GetHashCode() methods.  
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Job job &&
+                   Id == job.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id);
+        }
+
+        // TODO: Task 5: Generate custom ToString() method.
+        public override string ToString()
+        {
+            if (Name == null || EmployerName == null || EmployerLocation == null || JobType == null || JobCoreCompetency == null)
+            {
+                return "Data not available";
+            }
+            else
+            {
+                return $"\n" +
+                    $"ID: {Id}\n" +
+                    $"Name: {Name}\n" +
+                    $"Employer: {EmployerName.Value}\n" +
+                    $"Location: {EmployerLocation.Value}\n" +
+                    $"Position Type: {JobType.Value}\n" +
+                    $"Core Competency: {JobCoreCompetency.Value}\n" +
+                    $"\n";
+            }
+        }
+
+        //Until you create this method, you will not be able to print a job to the console.
+
+
+
     }
 }
 
